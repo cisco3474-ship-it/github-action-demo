@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A beautiful demo website for CI/CD with GitHub Actions" />
+    <title>CI/CD Demo Project</title>
+    <link rel="stylesheet" href="./style.css" />
+    <!-- Google Fonts for Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="background-elements">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+    </div>
+    
+    <main class="container glass-panel">
+      <header>
+        <span class="badge">v1.0.0</span>
+        <h1>Welcome to Your <span class="text-gradient">CI/CD Pipeline</span></h1>
+      </header>
+      
+      <section class="content">
+        <p>This is a stunning static website built with Vite and pure CSS.</p>
+        <p>Whenever you push changes to GitHub, the action will automatically build and deploy the new version to GitHub Pages.</p>
+        
+        <div class="interactive-area">
+          <button id="actionBtn" class="primary-btn">Deploy Magic</button>
+          <p id="statusMsg" class="hidden">All systems operational. Ready for deployment!</p>
+        </div>
+      </section>
+
+      <footer>
+        <p>Powered by GitHub Actions & Vite</p>
+      </footer>
+    </main>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>
