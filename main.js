@@ -1,22 +1,41 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const actionBtn = document.getElementById('actionBtn');
-  const statusMsg = document.getElementById('statusMsg');
+    // Intersection Observer for scroll animations
+    const faders = document.querySelectorAll('.fade-in');
 
-  actionBtn.addEventListener('click', () => {
-    // Add micro-animation
-    actionBtn.style.transform = 'scale(0.95)';
-    setTimeout(() => {
-      actionBtn.style.transform = 'scale(1)';
-    }, 150);
+    const appearOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
+    };
 
-    // Toggle message visibility
-    statusMsg.classList.remove('hidden');
-    statusMsg.classList.add('visible');
-    
-    // Auto hide after 3 seconds
-    setTimeout(() => {
-      statusMsg.classList.remove('visible');
-      statusMsg.classList.add('hidden');
-    }, 3000);
-  });
+    const appearOnScroll = new IntersectionObserver(function(
+        entries, 
+        appearOnScroll
+    ) {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+                return;
+            } else {
+                entry.target.classList.add('appear');
+                appearOnScroll.unobserve(entry.target);
+            }
+        });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+        appearOnScroll.observe(fader);
+    });
+
+    // Navbar hide/show on scroll
+    let lastScrollTop = 0;
+    const navbar = document.querySelector('.navbar');
+
+    window.addEventListener('scroll', () => {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop && scrollTop > 80) {
+            navbar.style.transform = 'translateY(-100%)';
+        } else {
+            navbar.style.transform = 'translateY(0)';
+        }
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    }, false);
 });
